@@ -5,7 +5,7 @@ In this backend, I just created a simple backend to serve RESTful API for Notes 
 
 Todo List:
 1. **(done)** MySQL with single file, branch name: **mysql-single**
-2. MySQL with modular (structurized files and folders)
+2. MySQL with modular (structurized files and folders) - YOU ARE HERE
 3. MongoDB with single file?
 4. MongoDB with modular (structurized files and folders)
 5. MySQL with Sequilize?
