@@ -2,7 +2,7 @@
 const express = require('express'),
     bodyParser = require('body-parser'),
     cors = require('cors'),
-    mysql = require('mysql'),
+    // mysql = require('mysql'),
     app = express(),
     port = process.env.PORT || 3000; //use default port in server (cloud) or 3000
 
@@ -13,16 +13,7 @@ app.use(bodyParser.json());
 app.use(cors());
 
 
-// initialize mysql connection
-const connection = mysql.createConnection({
-    host: 'localhost',
-    user: 'root',
-    password: '',
-    database: 'dbnotes'
-});
-connection.connect(err => {
-    if (err) throw err;
-})
+
 
 // ROUTES ---------------------------
 // GET ALL NOTES
@@ -36,29 +27,29 @@ app.get('/notes', (req, res) => {
     })
 })
 
-// GET NOTE BY ID
-app.get('/notes/:id', function (req, res) {
-    connection.query('SELECT * FROM `notes` WHERE `id` = ?', req.params.id, function (err, results) {
-        if (err) {
-            console.log(err);
-        } else {
-            res.send(results);
-        }
-    });
-});
+// // GET NOTE BY ID
+// app.get('/notes/:id', function (req, res) {
+//     connection.query('SELECT * FROM `notes` WHERE `id` = ?', req.params.id, function (err, results) {
+//         if (err) {
+//             console.log(err);
+//         } else {
+//             res.send(results);
+//         }
+//     });
+// });
 
-// POST NOTE
-app.post('/notes', function (req, res) {
-    const { id, text, date } = req.body;
-    connection.query('INSERT INTO `notes` (id, text, date) values (?, ?, ?)', [id, text, date], function (err, results) {
-        if (err) {
-            console.log(err);
-        } else {
-            console.log('Success adding note!');
-            res.send(req.body);
-        }
-    });
-});
+// // POST NOTE
+// app.post('/notes', function (req, res) {
+//     const { id, text, date } = req.body;
+//     connection.query('INSERT INTO `notes` (id, text, date) values (?, ?, ?)', [id, text, date], function (err, results) {
+//         if (err) {
+//             console.log(err);
+//         } else {
+//             console.log('Success adding note!');
+//             res.send(req.body);
+//         }
+//     });
+// });
 
 // UPDATE A NOTE
 app.put('/notes/:id', function (req, res) {
